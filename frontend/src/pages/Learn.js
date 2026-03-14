@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useLanguage } from "../context/LanguageContext";
 import { translations } from "../translations";
+import API_URL from "../config";
 
 const s = {
   page: { display: "grid", gridTemplateColumns: "280px 1fr", gap: "2rem", maxWidth: "1400px", margin: "0 auto", padding: "2rem", minHeight: "calc(100vh - 60px)" },
@@ -325,7 +326,7 @@ export default function Learn() {
 
   const runCode = async (code, exampleId) => {
     try {
-      const response = await axios.post("http://localhost:5000/api/run", { code });
+      const response = await axios.post(`${API_URL}/api/run`, { code });
       setResults(prev => ({
         ...prev,
         [exampleId]: response.data.stdout
